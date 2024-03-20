@@ -1,0 +1,182 @@
+---
+title: "Assignment 1 Data Visualization"
+author: "Yazeed Mshayekh 0202090"
+date: "2024-03-19"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Call the Required Frameworks
+
+```{r ggplot2}
+suppressWarnings(library(ggplot2))
+```
+
+## Read the built-in mtcars data in R
+
+```{r mtcars}
+data(mtcars)
+head(mtcars)
+summary(mtcars)
+```
+
+## Pie Chart of Car Distribution by Cylinder
+
+Generate a pie chart using ggplot2 to illustrate the distribution of cars based on their cylinder (cyl) values from the mtcars dataset.
+
+```{r piechart}
+
+pie_data <- table(mtcars$cyl)
+pie_labels <- paste(names(pie_data), "cylinders", sep = " ")
+pie_chart <- ggplot() +
+             geom_bar(aes(x = "", y = pie_data, fill = factor(names(pie_data))), stat = "identity") +
+             coord_polar("y", start = 0) +
+             theme_void() +
+             labs(title = "Distribution of Cars by Cylinder", fill = "Cylinder")
+
+print(pie_chart)
+
+```
+
+## Bar Plot of Carb Type Count
+
+```{r Bar Plot}
+suppressWarnings({
+carb_counts <- table(mtcars$carb)
+
+carb_levels <- names(sort(carb_counts))
+
+mtcars$carb <- factor(mtcars$carb, levels = carb_levels)
+
+color_range <- rev(heat.colors(length(carb_levels)))
+
+color_palette <- colorRampPalette(color_range)(length(carb_levels))
+
+carb_colors <- setNames(color_palette, carb_levels)
+
+bar_plot <- ggplot(mtcars, aes(x = carb)) +
+            geom_bar(aes(fill = carb), color = "black") +
+            scale_fill_manual(values = carb_colors) +
+            labs(title = "Count of Each Carb Type (Ascending)", x = "Carb Type", y = "Count") +
+            theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+print(bar_plot)
+})
+```
+
+## Stacked Bar Plot of Gear Type by Cylinder
+
+```{r Stacked Bar Plot}
+suppressWarnings({
+max_count <- max(table(mtcars$gear))
+
+mtcars$cyl <- factor(mtcars$cyl, levels = unique(mtcars$cyl), ordered = TRUE)
+
+gear_counts <- table(mtcars$gear)
+gear_levels <- names(sort(gear_counts))
+
+blue_palette <- colorRampPalette(c("lightblue", "darkblue"))(length(gear_levels))
+gear_colors <- setNames(blue_palette, gear_levels)
+
+stacked_bar <- ggplot(mtcars, aes(x = cyl, fill = factor(gear, levels = gear_levels))) +
+               geom_bar(position = "stack") +
+               scale_fill_manual(values = gear_colors) +
+               labs(title = "Count of Gear Type Segmented by Cylinder", x = "Cylinder", y = "Count", fill = "Gear Type") +
+               theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+               geom_text(aes(label = stat(count)), stat = "count", position = position_stack(vjust = 0.5), color = "#2E97A7") +
+               ylim(0, max_count)
+
+print(stacked_bar)
+
+})
+```
+## 
+```{r scatterplot}
+suppressWarnings({
+
+mtcars$cyl_shape <- factor(ifelse(mtcars$cyl == 6, "6 cylinders", ifelse(mtcars$cyl == 4, "4 cylinders", "8 cylinders")))
+
+color_palette <- colorRampPalette(c("lightblue", "darkblue"))(4)
+
+mtcars$size <- mtcars$wt
+
+x_range <- c(min(mtcars$wt) - 0.5, max(mtcars$wt) + 0.5)
+y_range <- c(min(mtcars$mpg) - 5, max(mtcars$mpg) + 5)
+
+scatterplot <- ggplot(mtcars, aes(x = wt, y = mpg, shape = cyl_shape, size = size, color = wt)) +
+               geom_point(position = position_dodge(width = 0.1)) +  
+               labs(title = "Scatterplot of Weight vs. MPG with Cylinder Shapes", x = "Weight", y = "Miles per Gallon") +
+               scale_shape_manual(values = c("6 cylinders" = 1, "4 cylinders" = 2, "8 cylinders" = 0),
+                                  labels = c("6 cylinders", "4 cylinders", "8 cylinders")) +
+               scale_color_gradient(low = color_palette[1], high = color_palette[4], limits = range(mtcars$wt)) +
+               guides(size = guide_legend(title = "Weight"), color = guide_colorbar(title = "Weight")) +
+               xlim(x_range) +
+               ylim(y_range)
+
+print(scatterplot)
+
+})
+```
+## Other Plots
+
+```{r other plots}
+# Density Plot
+density_plot <- ggplot(mtcars, aes(x = mpg)) +
+                geom_density() +
+                labs(title = "Density Plot of MPG")
+
+# Heatmap
+heatmap <- heatmap <- ggplot(mtcars, aes(x = factor(cyl), y = factor(am), fill = mpg)) +
+           geom_tile() +
+           scale_fill_gradient(low = "lightblue", high = "darkblue") +
+           labs(title = "Heatmap of Cars Data", x = "Number of Cylinders", y = "Transmission (0 = Automatic, 1 = Manual)", fill = "Miles per Gallon")
+
+# Dot Plot
+dot_plot <- ggplot(mtcars, aes(x = factor(cyl), y = mpg)) +
+            geom_dotplot(binaxis = "y", stackdir = "center", fill = "blue") +
+            labs(title = "Dot Plot of MPG by Cylinder", x = "Cylinder", y = "Miles per Gallon")
+
+# ECDF Plot
+ecdf_plot <- ggplot(mtcars, aes(x = mpg)) +
+             stat_ecdf() +
+             labs(title = "ECDF of MPG")
+
+# Q-Q Plot
+qq_plot <- ggplot(mtcars, aes(sample = mpg)) +
+           stat_qq() +
+           labs(title = "Q-Q Plot of MPG")
+
+# Comment on best display method
+comment <- "Each type of plot has its own advantages depending on the purpose. For exploring distributions, density plots and histograms are useful. Scatterplots are great for examining relationships between two variables. ECDF and Q-Q plots are helpful for assessing data normality. Heatmaps and stacked bar plots are effective for visualizing relationships between categorical variables."
+
+list(density_plot, heatmap, dot_plot, ecdf_plot, qq_plot, comment)
+```
+## Dataset
+
+```{r Custom dataset}
+data(iris)
+head(iris)
+summary(iris)
+```
+
+## Scatter of Sepal Length vs. Sepal Width by Species
+
+```{r Custom Visualization}
+scatterplot <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) +
+               geom_point() +
+               labs(title = "Scatterplot of Sepal Length vs. Sepal Width by Species",
+                    x = "Sepal Length", y = "Sepal Width", color = "Species")
+
+print(scatterplot)
+```
+
+## Explanation
+
+- **Dataset Selection**: The Iris dataset was chosen because it contains measurements of iris flowers from three species, making it suitable for showing how to visualize and group data.
+
+- **Visualization Type and Rationale**: A scatterplot was chosen because it effectively shows the relationship between two measurements (Sepal.Length and Sepal.Width). By using colors to represent species, we can easily see differences and patterns among them. This helps in understanding the characteristics of the Iris dataset.

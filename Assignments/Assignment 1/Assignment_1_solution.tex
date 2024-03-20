@@ -1,0 +1,459 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Assignment 1 Data Visualization},
+  pdfauthor={Yazeed Mshayekh 0202090},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Assignment 1 Data Visualization}
+\author{Yazeed Mshayekh 0202090}
+\date{2024-03-19}
+
+\begin{document}
+\maketitle
+
+\hypertarget{call-the-required-frameworks}{%
+\subsection{Call the Required
+Frameworks}\label{call-the-required-frameworks}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{suppressWarnings}\NormalTok{(}\FunctionTok{library}\NormalTok{(ggplot2))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{read-the-built-in-mtcars-data-in-r}{%
+\subsection{Read the built-in mtcars data in
+R}\label{read-the-built-in-mtcars-data-in-r}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(mtcars)}
+\FunctionTok{head}\NormalTok{(mtcars)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(mtcars)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       mpg             cyl             disp             hp       
+##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
+##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
+##  Median :19.20   Median :6.000   Median :196.3   Median :123.0  
+##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
+##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
+##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
+##       drat             wt             qsec             vs        
+##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
+##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
+##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
+##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
+##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
+##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
+##        am              gear            carb      
+##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
+##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
+##  Median :0.0000   Median :4.000   Median :2.000  
+##  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
+##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
+##  Max.   :1.0000   Max.   :5.000   Max.   :8.000
+\end{verbatim}
+
+\hypertarget{pie-chart-of-car-distribution-by-cylinder}{%
+\subsection{Pie Chart of Car Distribution by
+Cylinder}\label{pie-chart-of-car-distribution-by-cylinder}}
+
+Generate a pie chart using ggplot2 to illustrate the distribution of
+cars based on their cylinder (cyl) values from the mtcars dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pie\_data }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{cyl)}
+\NormalTok{pie\_labels }\OtherTok{\textless{}{-}} \FunctionTok{paste}\NormalTok{(}\FunctionTok{names}\NormalTok{(pie\_data), }\StringTok{"cylinders"}\NormalTok{, }\AttributeTok{sep =} \StringTok{" "}\NormalTok{)}
+\NormalTok{pie\_chart }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{() }\SpecialCharTok{+}
+             \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \StringTok{""}\NormalTok{, }\AttributeTok{y =}\NormalTok{ pie\_data, }\AttributeTok{fill =} \FunctionTok{factor}\NormalTok{(}\FunctionTok{names}\NormalTok{(pie\_data))), }\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{) }\SpecialCharTok{+}
+             \FunctionTok{coord\_polar}\NormalTok{(}\StringTok{"y"}\NormalTok{, }\AttributeTok{start =} \DecValTok{0}\NormalTok{) }\SpecialCharTok{+}
+             \FunctionTok{theme\_void}\NormalTok{() }\SpecialCharTok{+}
+             \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Distribution of Cars by Cylinder"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"Cylinder"}\NormalTok{)}
+
+\FunctionTok{print}\NormalTok{(pie\_chart)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Don't know how to automatically pick scale for object of type <table>.
+## Defaulting to continuous.
+\end{verbatim}
+
+\includegraphics{Assignment_1_solution_files/figure-latex/piechart-1.pdf}
+
+\hypertarget{bar-plot-of-carb-type-count}{%
+\subsection{Bar Plot of Carb Type
+Count}\label{bar-plot-of-carb-type-count}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{suppressWarnings}\NormalTok{(\{}
+\NormalTok{carb\_counts }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{carb)}
+
+\NormalTok{carb\_levels }\OtherTok{\textless{}{-}} \FunctionTok{names}\NormalTok{(}\FunctionTok{sort}\NormalTok{(carb\_counts))}
+
+\NormalTok{mtcars}\SpecialCharTok{$}\NormalTok{carb }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{carb, }\AttributeTok{levels =}\NormalTok{ carb\_levels)}
+
+\NormalTok{color\_range }\OtherTok{\textless{}{-}} \FunctionTok{rev}\NormalTok{(}\FunctionTok{heat.colors}\NormalTok{(}\FunctionTok{length}\NormalTok{(carb\_levels)))}
+
+\NormalTok{color\_palette }\OtherTok{\textless{}{-}} \FunctionTok{colorRampPalette}\NormalTok{(color\_range)(}\FunctionTok{length}\NormalTok{(carb\_levels))}
+
+\NormalTok{carb\_colors }\OtherTok{\textless{}{-}} \FunctionTok{setNames}\NormalTok{(color\_palette, carb\_levels)}
+
+\NormalTok{bar\_plot }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(mtcars, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ carb)) }\SpecialCharTok{+}
+            \FunctionTok{geom\_bar}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{fill =}\NormalTok{ carb), }\AttributeTok{color =} \StringTok{"black"}\NormalTok{) }\SpecialCharTok{+}
+            \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =}\NormalTok{ carb\_colors) }\SpecialCharTok{+}
+            \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Count of Each Carb Type (Ascending)"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Carb Type"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Count"}\NormalTok{) }\SpecialCharTok{+}
+            \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{))}
+
+\FunctionTok{print}\NormalTok{(bar\_plot)}
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment_1_solution_files/figure-latex/Bar Plot-1.pdf}
+
+\hypertarget{stacked-bar-plot-of-gear-type-by-cylinder}{%
+\subsection{Stacked Bar Plot of Gear Type by
+Cylinder}\label{stacked-bar-plot-of-gear-type-by-cylinder}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{suppressWarnings}\NormalTok{(\{}
+\NormalTok{max\_count }\OtherTok{\textless{}{-}} \FunctionTok{max}\NormalTok{(}\FunctionTok{table}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{gear))}
+
+\NormalTok{mtcars}\SpecialCharTok{$}\NormalTok{cyl }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{cyl, }\AttributeTok{levels =} \FunctionTok{unique}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{cyl), }\AttributeTok{ordered =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{gear\_counts }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{gear)}
+\NormalTok{gear\_levels }\OtherTok{\textless{}{-}} \FunctionTok{names}\NormalTok{(}\FunctionTok{sort}\NormalTok{(gear\_counts))}
+
+\NormalTok{blue\_palette }\OtherTok{\textless{}{-}} \FunctionTok{colorRampPalette}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"lightblue"}\NormalTok{, }\StringTok{"darkblue"}\NormalTok{))(}\FunctionTok{length}\NormalTok{(gear\_levels))}
+\NormalTok{gear\_colors }\OtherTok{\textless{}{-}} \FunctionTok{setNames}\NormalTok{(blue\_palette, gear\_levels)}
+
+\NormalTok{stacked\_bar }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(mtcars, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ cyl, }\AttributeTok{fill =} \FunctionTok{factor}\NormalTok{(gear, }\AttributeTok{levels =}\NormalTok{ gear\_levels))) }\SpecialCharTok{+}
+               \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position =} \StringTok{"stack"}\NormalTok{) }\SpecialCharTok{+}
+               \FunctionTok{scale\_fill\_manual}\NormalTok{(}\AttributeTok{values =}\NormalTok{ gear\_colors) }\SpecialCharTok{+}
+               \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Count of Gear Type Segmented by Cylinder"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Cylinder"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Count"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"Gear Type"}\NormalTok{) }\SpecialCharTok{+}
+               \FunctionTok{theme}\NormalTok{(}\AttributeTok{axis.text.x =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{angle =} \DecValTok{45}\NormalTok{, }\AttributeTok{hjust =} \DecValTok{1}\NormalTok{)) }\SpecialCharTok{+}
+               \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label =} \FunctionTok{stat}\NormalTok{(count)), }\AttributeTok{stat =} \StringTok{"count"}\NormalTok{, }\AttributeTok{position =} \FunctionTok{position\_stack}\NormalTok{(}\AttributeTok{vjust =} \FloatTok{0.5}\NormalTok{), }\AttributeTok{color =} \StringTok{"\#2E97A7"}\NormalTok{) }\SpecialCharTok{+}
+               \FunctionTok{ylim}\NormalTok{(}\DecValTok{0}\NormalTok{, max\_count)}
+
+\FunctionTok{print}\NormalTok{(stacked\_bar)}
+
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment_1_solution_files/figure-latex/Stacked Bar Plot-1.pdf}
+\#\#
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{suppressWarnings}\NormalTok{(\{}
+
+\NormalTok{mtcars}\SpecialCharTok{$}\NormalTok{cyl\_shape }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{cyl }\SpecialCharTok{==} \DecValTok{6}\NormalTok{, }\StringTok{"6 cylinders"}\NormalTok{, }\FunctionTok{ifelse}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{cyl }\SpecialCharTok{==} \DecValTok{4}\NormalTok{, }\StringTok{"4 cylinders"}\NormalTok{, }\StringTok{"8 cylinders"}\NormalTok{)))}
+
+\NormalTok{color\_palette }\OtherTok{\textless{}{-}} \FunctionTok{colorRampPalette}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"lightblue"}\NormalTok{, }\StringTok{"darkblue"}\NormalTok{))(}\DecValTok{4}\NormalTok{)}
+
+\NormalTok{mtcars}\SpecialCharTok{$}\NormalTok{size }\OtherTok{\textless{}{-}}\NormalTok{ mtcars}\SpecialCharTok{$}\NormalTok{wt}
+
+\NormalTok{x\_range }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{wt) }\SpecialCharTok{{-}} \FloatTok{0.5}\NormalTok{, }\FunctionTok{max}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{wt) }\SpecialCharTok{+} \FloatTok{0.5}\NormalTok{)}
+\NormalTok{y\_range }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{min}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{mpg) }\SpecialCharTok{{-}} \DecValTok{5}\NormalTok{, }\FunctionTok{max}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{mpg) }\SpecialCharTok{+} \DecValTok{5}\NormalTok{)}
+
+\NormalTok{scatterplot }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(mtcars, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ wt, }\AttributeTok{y =}\NormalTok{ mpg, }\AttributeTok{shape =}\NormalTok{ cyl\_shape, }\AttributeTok{size =}\NormalTok{ size, }\AttributeTok{color =}\NormalTok{ wt)) }\SpecialCharTok{+}
+               \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{position =} \FunctionTok{position\_dodge}\NormalTok{(}\AttributeTok{width =} \FloatTok{0.1}\NormalTok{)) }\SpecialCharTok{+}  
+               \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Scatterplot of Weight vs. MPG with Cylinder Shapes"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Weight"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Miles per Gallon"}\NormalTok{) }\SpecialCharTok{+}
+               \FunctionTok{scale\_shape\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"6 cylinders"} \OtherTok{=} \DecValTok{1}\NormalTok{, }\StringTok{"4 cylinders"} \OtherTok{=} \DecValTok{2}\NormalTok{, }\StringTok{"8 cylinders"} \OtherTok{=} \DecValTok{0}\NormalTok{),}
+                                  \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"6 cylinders"}\NormalTok{, }\StringTok{"4 cylinders"}\NormalTok{, }\StringTok{"8 cylinders"}\NormalTok{)) }\SpecialCharTok{+}
+               \FunctionTok{scale\_color\_gradient}\NormalTok{(}\AttributeTok{low =}\NormalTok{ color\_palette[}\DecValTok{1}\NormalTok{], }\AttributeTok{high =}\NormalTok{ color\_palette[}\DecValTok{4}\NormalTok{], }\AttributeTok{limits =} \FunctionTok{range}\NormalTok{(mtcars}\SpecialCharTok{$}\NormalTok{wt)) }\SpecialCharTok{+}
+               \FunctionTok{guides}\NormalTok{(}\AttributeTok{size =} \FunctionTok{guide\_legend}\NormalTok{(}\AttributeTok{title =} \StringTok{"Weight"}\NormalTok{), }\AttributeTok{color =} \FunctionTok{guide\_colorbar}\NormalTok{(}\AttributeTok{title =} \StringTok{"Weight"}\NormalTok{)) }\SpecialCharTok{+}
+               \FunctionTok{xlim}\NormalTok{(x\_range) }\SpecialCharTok{+}
+               \FunctionTok{ylim}\NormalTok{(y\_range)}
+
+\FunctionTok{print}\NormalTok{(scatterplot)}
+
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment_1_solution_files/figure-latex/scatterplot-1.pdf}
+\#\# Other Plots
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Density Plot}
+\NormalTok{density\_plot }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(mtcars, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ mpg)) }\SpecialCharTok{+}
+                \FunctionTok{geom\_density}\NormalTok{() }\SpecialCharTok{+}
+                \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Density Plot of MPG"}\NormalTok{)}
+
+\CommentTok{\# Heatmap}
+\NormalTok{heatmap }\OtherTok{\textless{}{-}}\NormalTok{ heatmap }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(mtcars, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{factor}\NormalTok{(cyl), }\AttributeTok{y =} \FunctionTok{factor}\NormalTok{(am), }\AttributeTok{fill =}\NormalTok{ mpg)) }\SpecialCharTok{+}
+           \FunctionTok{geom\_tile}\NormalTok{() }\SpecialCharTok{+}
+           \FunctionTok{scale\_fill\_gradient}\NormalTok{(}\AttributeTok{low =} \StringTok{"lightblue"}\NormalTok{, }\AttributeTok{high =} \StringTok{"darkblue"}\NormalTok{) }\SpecialCharTok{+}
+           \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Heatmap of Cars Data"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Number of Cylinders"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Transmission (0 = Automatic, 1 = Manual)"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"Miles per Gallon"}\NormalTok{)}
+
+\CommentTok{\# Dot Plot}
+\NormalTok{dot\_plot }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(mtcars, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \FunctionTok{factor}\NormalTok{(cyl), }\AttributeTok{y =}\NormalTok{ mpg)) }\SpecialCharTok{+}
+            \FunctionTok{geom\_dotplot}\NormalTok{(}\AttributeTok{binaxis =} \StringTok{"y"}\NormalTok{, }\AttributeTok{stackdir =} \StringTok{"center"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"blue"}\NormalTok{) }\SpecialCharTok{+}
+            \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Dot Plot of MPG by Cylinder"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Cylinder"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Miles per Gallon"}\NormalTok{)}
+
+\CommentTok{\# ECDF Plot}
+\NormalTok{ecdf\_plot }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(mtcars, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ mpg)) }\SpecialCharTok{+}
+             \FunctionTok{stat\_ecdf}\NormalTok{() }\SpecialCharTok{+}
+             \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"ECDF of MPG"}\NormalTok{)}
+
+\CommentTok{\# Q{-}Q Plot}
+\NormalTok{qq\_plot }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(mtcars, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{sample =}\NormalTok{ mpg)) }\SpecialCharTok{+}
+           \FunctionTok{stat\_qq}\NormalTok{() }\SpecialCharTok{+}
+           \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Q{-}Q Plot of MPG"}\NormalTok{)}
+
+\CommentTok{\# Comment on best display method}
+\NormalTok{comment }\OtherTok{\textless{}{-}} \StringTok{"Each type of plot has its own advantages depending on the purpose. For exploring distributions, density plots and histograms are useful. Scatterplots are great for examining relationships between two variables. ECDF and Q{-}Q plots are helpful for assessing data normality. Heatmaps and stacked bar plots are effective for visualizing relationships between categorical variables."}
+
+\FunctionTok{list}\NormalTok{(density\_plot, heatmap, dot\_plot, ecdf\_plot, qq\_plot, comment)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+\end{verbatim}
+
+\includegraphics{Assignment_1_solution_files/figure-latex/other plots-1.pdf}
+
+\begin{verbatim}
+## 
+## [[2]]
+\end{verbatim}
+
+\includegraphics{Assignment_1_solution_files/figure-latex/other plots-2.pdf}
+
+\begin{verbatim}
+## 
+## [[3]]
+\end{verbatim}
+
+\begin{verbatim}
+## Bin width defaults to 1/30 of the range of the data. Pick better value with
+## `binwidth`.
+\end{verbatim}
+
+\includegraphics{Assignment_1_solution_files/figure-latex/other plots-3.pdf}
+
+\begin{verbatim}
+## 
+## [[4]]
+\end{verbatim}
+
+\includegraphics{Assignment_1_solution_files/figure-latex/other plots-4.pdf}
+
+\begin{verbatim}
+## 
+## [[5]]
+\end{verbatim}
+
+\includegraphics{Assignment_1_solution_files/figure-latex/other plots-5.pdf}
+
+\begin{verbatim}
+## 
+## [[6]]
+## [1] "Each type of plot has its own advantages depending on the purpose. For exploring distributions, density plots and histograms are useful. Scatterplots are great for examining relationships between two variables. ECDF and Q-Q plots are helpful for assessing data normality. Heatmaps and stacked bar plots are effective for visualizing relationships between categorical variables."
+\end{verbatim}
+
+\hypertarget{dataset}{%
+\subsection{Dataset}\label{dataset}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(iris)}
+\FunctionTok{head}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(iris)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## 
+\end{verbatim}
+
+\hypertarget{scatter-of-sepal-length-vs.-sepal-width-by-species}{%
+\subsection{Scatter of Sepal Length vs.~Sepal Width by
+Species}\label{scatter-of-sepal-length-vs.-sepal-width-by-species}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{scatterplot }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(iris, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Sepal.Length, }\AttributeTok{y =}\NormalTok{ Sepal.Width, }\AttributeTok{color =}\NormalTok{ Species)) }\SpecialCharTok{+}
+               \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+               \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Scatterplot of Sepal Length vs. Sepal Width by Species"}\NormalTok{,}
+                    \AttributeTok{x =} \StringTok{"Sepal Length"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Sepal Width"}\NormalTok{, }\AttributeTok{color =} \StringTok{"Species"}\NormalTok{)}
+
+\FunctionTok{print}\NormalTok{(scatterplot)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Assignment_1_solution_files/figure-latex/Custom Visualization-1.pdf}
+
+\hypertarget{explanation}{%
+\subsection{Explanation}\label{explanation}}
+
+\begin{itemize}
+\item
+  \textbf{Dataset Selection}: The Iris dataset was chosen because it
+  contains measurements of iris flowers from three species, making it
+  suitable for showing how to visualize and group data.
+\item
+  \textbf{Visualization Type and Rationale}: A scatterplot was chosen
+  because it effectively shows the relationship between two measurements
+  (Sepal.Length and Sepal.Width). By using colors to represent species,
+  we can easily see differences and patterns among them. This helps in
+  understanding the characteristics of the Iris dataset.
+\end{itemize}
+
+\end{document}
